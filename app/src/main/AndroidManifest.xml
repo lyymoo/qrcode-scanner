@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.study.qrscanner">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:installLocation="preferExternal"
+        android:hardwareAccelerated="true"
+        android:allowBackup="true"
+        android:backupInForeground="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.study.qrscanner.SplashActivity"
+            android:label="@string/app_name"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.study.qrscanner.ScannerActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.study.qrscanner.AboutActivity"
+            android:label="@string/about"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.HistoryActivity"
+            android:label="@string/history"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.HelpActivity"
+            android:label="@string/help"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.QrGenerator"
+            android:label="@string/QRGenerator"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.TutorialActivity"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name="com.study.qrscanner.SettingsActivity"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity"
+            android:label="@string/Settings"/>
+        <activity android:name="com.study.qrscanner.ResultActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.MailGnrActivity"
+            android:label="E-Mail"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.TelGnrActivity"
+            android:label="Phone number"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.UrlGnrActivity"
+            android:label="URL"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.SmsGnrActivity"
+            android:label="SMS"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.GeoLocatioGnrActivity"
+            android:label="Geo location"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.MailEnterActivity"
+            android:label="E-Mail"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.TelEnterActivity"
+            android:label="Phone number"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.UrlEnterActivity"
+            android:label="URL"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.SmsEnterActivity"
+            android:label="SMS"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.GeoLocationEnterActivity"
+            android:label="Geo location"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.MeCardEnterActivity"
+            android:label="MeCard"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.BizCardEnterActivity"
+            android:label="BizCard"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.MeCardGnrActivity"
+            android:label="MeCard"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.BizCardGnrActivity"
+            android:label="BizCard"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.MmsEnterActivity"
+            android:label="MMS"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.MmsGnrActivity"
+            android:label="MMS"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.WifiEnterActivity"
+            android:label="WIFI"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.WifiGnrActivity"
+            android:label="WIFI"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.VcardEnterActivity"
+            android:label="vcard"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.VcardGnrActivity"
+            android:label="vcard"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity" />
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.MarketEnterActivity"
+            android:label="Market"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity"/>
+        <activity
+            android:name="com.study.qrscanner.QRGenerating.MarketGnrActivity"
+            android:label="Market"
+            android:parentActivityName="com.study.qrscanner.ScannerActivity"/>
+    </application>
+
+</manifest>
