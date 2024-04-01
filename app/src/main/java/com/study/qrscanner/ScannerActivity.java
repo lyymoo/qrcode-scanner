@@ -26,7 +26,6 @@ import com.journeyapps.barcodescanner.BarcodeResult;
 import com.journeyapps.barcodescanner.CameraPreview;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.journeyapps.barcodescanner.DefaultDecoderFactory;
-import com.study.qrscanner.R;
 import com.study.qrscanner.helpers.BaseActivity;
 
 import java.util.Arrays;
@@ -50,25 +49,41 @@ public class ScannerActivity extends BaseActivity implements NavigationView.OnNa
     private BeepManager beepManager;
 
     private final CameraPreview.StateListener stateListener = new CameraPreview.StateListener() {
-        @Override public void previewSized() { }
-        @Override public void previewStarted() { }
-        @Override public void previewStopped() { }
-        @Override public void cameraError(Exception error) { }
-        @Override public void cameraClosed() { }
+        @Override
+        public void previewSized() {
+        }
+
+        @Override
+        public void previewStarted() {
+        }
+
+        @Override
+        public void previewStopped() {
+        }
+
+        @Override
+        public void cameraError(Exception error) {
+        }
+
+        @Override
+        public void cameraClosed() {
+        }
     };
 
     private BarcodeCallback callback = new BarcodeCallback() {
         @Override
         public void barcodeResult(BarcodeResult result) {
             String contents = result.toString();
-            if(contents.isEmpty()) {
+            if (contents.isEmpty()) {
                 return;
             }
 
-            barcodeScannerView.setStatusText(result.getText());
-
+            // 将扫描的文本显示到扫码状态提示文本框里
+            //barcodeScannerView.setStatusText(result.getText());
+            // 播放扫描成功声音beep
             beepManager.playBeepSoundAndVibrate();
 
+            // 跳转到扫码结果页面 从ScannerActivity跳转到ResultActivity
             Intent resultIntent = new Intent(ScannerActivity.this, ResultActivity.class);
             resultIntent.putExtra("QRResult", contents);
             startActivity(resultIntent);
@@ -96,7 +111,7 @@ public class ScannerActivity extends BaseActivity implements NavigationView.OnNa
             beepManager.setBeepEnabled(false);
         }
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             initScanWithPermissionCheck();
         } else {
             initScan();
@@ -118,7 +133,7 @@ public class ScannerActivity extends BaseActivity implements NavigationView.OnNa
     private void showCameraPermissionRequirement(boolean show) {
         barcodeScannerView.setVisibility(show ? View.GONE : View.VISIBLE);
 
-        if(show) {
+        if (show) {
             barcodeScannerView.pause();
         } else {
             barcodeScannerView.resume();
@@ -147,12 +162,15 @@ public class ScannerActivity extends BaseActivity implements NavigationView.OnNa
 
     @Override
     protected void onResume() {
+        // 页面resume的时候zxing扫码框恢复到扫描状态
         super.onResume();
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             showCameraPermissionRequirement(true);
         } else {
-            barcodeScannerView.resume();
+            // 清空扫码视图的文本框
+            //barcodeScannerView.setStatusText(null);
+            initScan();
         }
     }
 

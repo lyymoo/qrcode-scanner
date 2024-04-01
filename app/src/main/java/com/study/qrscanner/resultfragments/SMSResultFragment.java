@@ -52,7 +52,7 @@ public class SMSResultFragment extends ResultFragment {
                         switch (which) {
                             case 0:
                                 Intent sms = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + number));
-                                sms.putExtra("address",  number);
+                                sms.putExtra("address", number);
                                 sms.putExtra("sms_body", message);
                                 caption = getResources().getStringArray(R.array.sms_array)[0];
                                 startActivity(Intent.createChooser(sms, caption));

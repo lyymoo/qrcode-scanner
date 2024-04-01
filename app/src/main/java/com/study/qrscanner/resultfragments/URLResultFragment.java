@@ -40,7 +40,7 @@ public class URLResultFragment extends ResultFragment {
         View v = super.onCreateView(inflater, container, savedInstanceState);
 
         qrurl = qrCodeString;
-        final String qrurl2,qrurl3;
+        final String qrurl2, qrurl3;
 
         TextView resultText = (TextView) v.findViewById(R.id.textDomain);
         TextView furtherInfo = (TextView) v.findViewById(R.id.textLink);
@@ -50,14 +50,14 @@ public class URLResultFragment extends ResultFragment {
         String domain = qrurl2;
 
         domain = domain.split("\n")[0];
-        if(!domain.endsWith("/")) domain = domain + '/';
+        if (!domain.endsWith("/")) domain = domain + '/';
 
         Pattern pattern = Pattern.compile("([0-9a-zA-ZäöüÄÖÜß-]*.(co.uk|com.de|de.com|co.at|[a-z]{2,})/)");
 
         Matcher m = pattern.matcher(domain);
-        if(m.find()) domain = m.group(1);
+        if (m.find()) domain = m.group(1);
 
-        if(domain.endsWith("/")) domain = domain.substring(0, domain.length()-1);
+        if (domain.endsWith("/")) domain = domain.substring(0, domain.length() - 1);
 
         int start = qrurl.indexOf(domain);
         int end = start + domain.length();
@@ -73,7 +73,7 @@ public class URLResultFragment extends ResultFragment {
         final CheckBox knowDomain = (CheckBox) v.findViewById(R.id.checkBoxKnowRisks);
 
         // wenn bereits vertraut wurde, checkbox setzen
-        if(trust)
+        if (trust)
             knowDomain.setChecked(true);
 
         knowDomain.setOnClickListener(new View.OnClickListener() {
@@ -81,11 +81,9 @@ public class URLResultFragment extends ResultFragment {
             @Override
             public void onClick(View v) {
 
-                if (knowDomain.isChecked())
-                {
+                if (knowDomain.isChecked()) {
                     checked = true;
-                }
-                else {
+                } else {
                     checked = false;
                 }
             }
@@ -95,8 +93,8 @@ public class URLResultFragment extends ResultFragment {
     }
 
     public void onProceedPressed(Context context, String content) {
-        if(!checked) {
-            Toast.makeText(context,R.string.conform_url,Toast.LENGTH_LONG).show();
+        if (!checked) {
+            Toast.makeText(context, R.string.conform_url, Toast.LENGTH_LONG).show();
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle(R.string.choose_action)
@@ -107,16 +105,15 @@ public class URLResultFragment extends ResultFragment {
                             switch (which) {
                                 case 0:
 
-                                    String qrurl3="";
-                                    if(!qrurl.startsWith("http://") && !qrurl.startsWith("https://"))
-                                    {
+                                    String qrurl3 = "";
+                                    if (!qrurl.startsWith("http://") && !qrurl.startsWith("https://")) {
                                         qrurl3 = "http://" + qrurl;
 
                                         Intent url = new Intent(Intent.ACTION_VIEW);/// !!!!
                                         url.setData(Uri.parse(qrurl3));
                                         caption = getResources().getStringArray(R.array.url_array)[0];
-                                        startActivity(Intent.createChooser(url, caption));}
-                                    else {
+                                        startActivity(Intent.createChooser(url, caption));
+                                    } else {
                                         Intent url = new Intent(Intent.ACTION_VIEW);/// !!!!
                                         url.setData(Uri.parse(qrurl));
                                         caption = getResources().getStringArray(R.array.url_array)[0];

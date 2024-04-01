@@ -10,8 +10,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "DB.db";
+    // 内容表的表名
     public static final String TABLE_NAMES = "contents";
+    // 表ID列的列名
     public static final String COLUMN_ID = "_id";
+    // 表content列的列名
     public static final String COLUMN_NAME = "content";
 
     //We need to pass database information along to superclass
@@ -37,7 +40,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     //Add a new row to the database
-    public void addContent(ScanedData content){
+    public void addContent(ScanedData content) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, content.get_name());
         SQLiteDatabase db = getWritableDatabase();
@@ -46,19 +49,19 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     //Delete a content from the database
-    public void deleteContent(String Content){
+    public void deleteContent(String Content) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAMES + " WHERE " + COLUMN_NAME + "=\"" + Content + "\";");
         db.close();
     }
 
-    public void deleteAllContents(){
+    public void deleteAllContents() {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_NAMES );
+        db.execSQL("DELETE FROM " + TABLE_NAMES);
         db.close();
     }
 
-    public Cursor getListContents(){
+    public Cursor getListContents() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAMES, null);
         return data;

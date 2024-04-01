@@ -179,26 +179,24 @@
     <string name="privacy_friendly">This application belongs to the group of PRIVACY FRIENDLY Apps developed by Technische Universität Darmstadt. Sourcecode licensed under GPLv3. Images copyright TU Darmstadt and Google Inc.</string>
     <string name="more_info">More information can be found on:</string>
     <string name="github" translatable="false"><a href="https://github.com/SecUSo/privacy-friendly-qr-scanner">Github-Repo</a></string>-->
+    <!--R.xml.help-->
     <string name="help_permission1_description">The app requires the camera permission, which is used to scan barcodes and qr codes via camera.</string>
     <string name="help_permission1_heading">Camera</string>
     <string name="help_privacy_heading">What permissions are required by PRIVACY FRIENDLY QR Scanner?</string>
     <string name="help_category_example">The scanning does not work, what can I do?</string>
     <string name="help_overview_heading">What is PRIVACY FRIENDLY QR Scanner?</string>
     <string name="help_intro">With PRIVACY FRIENDLY QR Scanner you can scan barcodes and qr-codes with various contents.</string>
-    <string name="help_whatis_answer">With PRIVACY FRIENDLY QR Scanner you can scan/generate barcodes and qr-codes with various contents. Also You can copy/share scanned QR code with other applications, furthermore you can save the generated QR code in the gallery and share it as well.</string>
-
 
     <!--###HELP###-->
-
-
     <string name="help_whatis">What is PRIVACY FRIENDLY QR Scanner?</string>
-
+    <string name="help_whatis_answer">With PRIVACY FRIENDLY QR Scanner you can scan/generate barcodes and qr-codes with various contents. Also You can copy/share scanned QR code with other applications, furthermore you can save the generated QR code in the gallery and share it as well.</string>
     <string name="help_usability">The scanning does not work, what can I do?</string>
     <string name="help_usability_answer">If you cannot scan a code, increase the distance between the scanner and the code.</string>
     <string name="help_privacy">What makes the app privacy-friendly?</string>
     <string name="help_privacy_answer">Privacy Friendly App Example does not require any permission. It further does not include any tracking mechanisms or advertisement.</string>
     <string name="help_permission">What permissions are required by PRIVACY FRIENDLY QR Scanner?</string>
     <string name="help_permission_answer">The app requires the camera permission, which is used to scan barcodes and qr codes via camera.</string>
+
     <!-- Strings related to SettingsActivity -->
 
     <!-- Example General settings -->
@@ -214,6 +212,8 @@
     <string name="content_copied">Content copied</string>
     <string name="share_via">Share via</string>
     <string name="no_content_in_history">There are no contents in history!</string>
+    <string name="export_error">This is not a file</string>
+    <string name="export_success">File saved successfully</string>
     <string name="selected_item">item selected</string>
     <string name="selected_items">items selected</string>
     <string name="removed_item">item removed</string>
@@ -242,7 +242,9 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="D_all">Delete all record(s)</string>
-    <string name="all_records">Do you  want to delete all record(s)?</string>
+    <string name="all_records">Do you want to delete all record(s)?</string>
+    <string name="Export_title">Save base64 text to file</string>
+    <string name="Export_tips">Do you save all base64 text to a file?</string>
     <string name="Del">Do you  want to delete selected record(s)?</string>
     <string name="confirmation">Confirmation</string>
     <string name="selected">Selected</string>

@@ -25,7 +25,6 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-
 import com.study.qrscanner.R;
 
 import java.util.HashMap;

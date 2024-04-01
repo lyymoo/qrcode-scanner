@@ -1,11 +1,10 @@
 package com.study.qrscanner;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ExpandableListView;
 
-import com.study.qrscanner.R;
 import com.study.qrscanner.helpers.ExpandableListAdapter;
 import com.study.qrscanner.helpers.HelpDataDump;
 
@@ -35,6 +34,7 @@ public class HelpActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
 
     }
+
     protected int getNavigationDrawerID() {
         return R.id.nav_help;
     }

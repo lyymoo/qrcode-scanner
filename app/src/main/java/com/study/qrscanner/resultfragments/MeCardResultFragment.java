@@ -42,11 +42,11 @@ public class MeCardResultFragment extends ResultFragment {
         int address_id = 0;
 
 
-        for(int i=0; i < content.length; i++) {
-            if(content[i].startsWith("N:")) name_id = i;
-            if(content[i].startsWith("EMAIL:")) email_id = i;
-            if(content[i].startsWith("TEL:")) phone_id = i;
-            if(content[i].startsWith("ADR:")) address_id = i;
+        for (int i = 0; i < content.length; i++) {
+            if (content[i].startsWith("N:")) name_id = i;
+            if (content[i].startsWith("EMAIL:")) email_id = i;
+            if (content[i].startsWith("TEL:")) phone_id = i;
+            if (content[i].startsWith("ADR:")) address_id = i;
         }
 
         name = content[name_id].substring(2);
@@ -75,7 +75,7 @@ public class MeCardResultFragment extends ResultFragment {
 
                                 contact.putExtra(ContactsContract.Intents.Insert.PHONE, phone);
                                 contact.putExtra(ContactsContract.Intents.Insert.NAME, name);
-                                contact.putExtra(ContactsContract.Intents.Insert.EMAIL,email);
+                                contact.putExtra(ContactsContract.Intents.Insert.EMAIL, email);
                                 // contact.putExtra(ContactsContract.Intents.Insert.COMPANY, org);
                                 // contact.putExtra(ContactsContract.Intents.Insert.JOB_TITLE, title);
 

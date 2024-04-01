@@ -68,9 +68,8 @@ public abstract class ResultFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
-        inflater.inflate(R.menu.share,menu);
-        inflater.inflate(R.menu.copy,menu);
+        inflater.inflate(R.menu.share, menu);
+        inflater.inflate(R.menu.copy, menu);
     }
 
     @Override

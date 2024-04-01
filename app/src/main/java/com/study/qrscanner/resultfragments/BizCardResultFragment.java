@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.study.qrscanner.R;
 
 public class BizCardResultFragment extends ResultFragment {
-
     private String name;
     private String email;
     private String phone;
@@ -50,13 +49,13 @@ public class BizCardResultFragment extends ResultFragment {
 
 //BIZCARD:N:Sean;X:Owen;T:Software Engineer;C:Google;A:76 9th Avenue, New York, NY 10011;B:+12125551212;E:srowen@google.com;;
 
-        for(int i=0; i < content.length; i++) {
-            if(content[i].startsWith("N:")) name_id = i;
-            if(content[i].startsWith("E:")) email_id = i;
-            if(content[i].startsWith("B:")) phone_id = i;
-            if(content[i].startsWith("A:")) address_id = i;
-            if(content[i].startsWith("C:")) company_id = i;
-            if(content[i].startsWith("T:")) title_id = i;
+        for (int i = 0; i < content.length; i++) {
+            if (content[i].startsWith("N:")) name_id = i;
+            if (content[i].startsWith("E:")) email_id = i;
+            if (content[i].startsWith("B:")) phone_id = i;
+            if (content[i].startsWith("A:")) address_id = i;
+            if (content[i].startsWith("C:")) company_id = i;
+            if (content[i].startsWith("T:")) title_id = i;
         }
 
         name = content[name_id].substring(2);
@@ -89,7 +88,7 @@ public class BizCardResultFragment extends ResultFragment {
 
                                 contact.putExtra(ContactsContract.Intents.Insert.PHONE, phone);
                                 contact.putExtra(ContactsContract.Intents.Insert.NAME, name);
-                                contact.putExtra(ContactsContract.Intents.Insert.EMAIL,email);
+                                contact.putExtra(ContactsContract.Intents.Insert.EMAIL, email);
                                 contact.putExtra(ContactsContract.Intents.Insert.COMPANY, company);
                                 contact.putExtra(ContactsContract.Intents.Insert.JOB_TITLE, title);
 

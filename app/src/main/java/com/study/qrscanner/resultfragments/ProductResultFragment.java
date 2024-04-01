@@ -34,25 +34,24 @@ public class ProductResultFragment extends ResultFragment {
 
     public void onProceedPressed(Context context, String content) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(R.string.choose_action)
-                .setItems(R.array.product_array, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case 0:
+        builder.setTitle(R.string.choose_action).setItems(R.array.product_array, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
 
-                                String url = productResult;
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse(url));
+                        String url = productResult;
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
 
-                                String caption = getResources().getStringArray(R.array.product_array)[0];
-                                startActivity(Intent.createChooser(intent, caption));
-                                break;
+                        String caption = getResources().getStringArray(R.array.product_array)[0];
+                        startActivity(Intent.createChooser(intent, caption));
+                        break;
 
-                            default:
-                        }
-                    }
-                });
+                    default:
+                }
+            }
+        });
         builder.create().show();
     }
 }

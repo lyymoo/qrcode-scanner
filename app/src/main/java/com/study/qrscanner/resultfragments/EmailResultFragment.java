@@ -38,7 +38,8 @@ public class EmailResultFragment extends ResultFragment {
         return v;
     }
 
-    public void onProceedPressed(Context context, String content) {AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    public void onProceedPressed(Context context, String content) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.choose_action)
                 .setItems(R.array.send_email_array, new DialogInterface.OnClickListener() {
                     @Override

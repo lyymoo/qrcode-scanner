@@ -26,9 +26,7 @@ public class TelResultFragment extends ResultFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = super.onCreateView(inflater, container, savedInstanceState);
 
-
         TextView resultField = (TextView) v.findViewById(R.id.result_field_tel);
-
         tel = qrCodeString.substring(4);
         resultField.setText(tel);
 
@@ -47,7 +45,7 @@ public class TelResultFragment extends ResultFragment {
                                 context.startActivity(Intent.createChooser(call, context.getResources().getStringArray(R.array.tel_array)[0]));
                                 break;
                             case 1:
-                                Intent contact = new Intent(ContactsContract.Intents.SHOW_OR_CREATE_CONTACT,Uri.fromParts("tel", tel, null));
+                                Intent contact = new Intent(ContactsContract.Intents.SHOW_OR_CREATE_CONTACT, Uri.fromParts("tel", tel, null));
                                 context.startActivity(Intent.createChooser(contact, context.getResources().getStringArray(R.array.tel_array)[1]));
                                 break;
                             default:

@@ -1,4 +1,5 @@
 package com.study.qrscanner;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
 
         Intent mainIntent;
 
-        if(firstStartPref.isFirstTimeLaunch()) {
+        if (firstStartPref.isFirstTimeLaunch()) {
             mainIntent = new Intent(this, TutorialActivity.class);
         } else {
             mainIntent = new Intent(this, ScannerActivity.class);

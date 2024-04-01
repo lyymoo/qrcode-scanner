@@ -34,26 +34,25 @@ public class GeoResultFragment extends ResultFragment {
 
     public void onProceedPressed(Context context, String content) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(R.string.choose_action)
-                .setItems(R.array.geo_array, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String caption = "";
-                        switch (which) {
-                            case 0:
-                                Uri gmmIntentUri = Uri.parse(qrCodeString);
-                                Intent mapIntent = new Intent(Intent.ACTION_VIEW);
-                                mapIntent.setData(gmmIntentUri);
+        builder.setTitle(R.string.choose_action).setItems(R.array.geo_array, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String caption = "";
+                switch (which) {
+                    case 0:
+                        Uri gmmIntentUri = Uri.parse(qrCodeString);
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW);
+                        mapIntent.setData(gmmIntentUri);
 
-                                startActivity(Intent.createChooser(mapIntent, caption));
+                        startActivity(Intent.createChooser(mapIntent, caption));
 
 
-                                break;
+                        break;
 
-                            default:
-                        }
-                    }
-                });
+                    default:
+                }
+            }
+        });
         builder.create().show();
     }
 }

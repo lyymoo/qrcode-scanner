@@ -34,10 +34,10 @@ public class WifiResultFragment extends ResultFragment {
         int ssid_id = 0;
         int encryption_id = 0;
         int pw_id = 0;
-        for(int i=0; i < content.length; i++) {
-            if(content[i].startsWith("S:")) ssid_id = i;
-            if(content[i].startsWith("T:")) encryption_id = i;
-            if(content[i].startsWith("P:")) pw_id = i;
+        for (int i = 0; i < content.length; i++) {
+            if (content[i].startsWith("S:")) ssid_id = i;
+            if (content[i].startsWith("T:")) encryption_id = i;
+            if (content[i].startsWith("P:")) pw_id = i;
         }
 
         ssid = content[ssid_id].substring(2);

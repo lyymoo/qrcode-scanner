@@ -31,7 +31,7 @@
     <string name="action_settings">Einstellungen</string>
     <string name="history">Verlauf</string>
     <string name="action_clear">Verlauf löschen</string>
-    <string name="action_export">Save To File</string>
+    <string name="action_export">In Datei speichern</string>
     <string name="cannot_clear">Der Verlauf ist bereits leer.</string>
     <string name="knowRisks">Ich habe den Link geprüft und möchte die Webseite besuchen.</string>
     <string name="domain">Link:</string>
@@ -185,6 +185,8 @@
     <string name="share_via">Teilen per</string>
 
     <string name="no_content_in_history">Es gibt keine Inhalte im Verlauf!</string>
+    <string name="export_error">Dies ist keine Datei</string>
+    <string name="export_success">Datei erfolgreich gespeichert</string>
     <string name="selected_item">Artikel ausgewählt</string>
     <string name="removed_item">Artikel entfernt</string>
     <string name="selected_items">Artikel ausgewählt</string>
@@ -226,6 +228,8 @@
     <string name="select_all">Wählen Sie Alle</string>
     <string name="selected_1">Ausgewählt</string>
     <string name="D_all">Alle Einträge löschen</string>
+    <string name="Export_title">Base64 Text in Datei speichern</string>
+    <string name="Export_tips">Speichern Sie den gesamten base64 Text in einer Datei?</string>
     <string name="History">Histor</string>
     <string name="QRGenerator">QR Generator</string>
     <string name="QRScanner">QR Scanner</string>

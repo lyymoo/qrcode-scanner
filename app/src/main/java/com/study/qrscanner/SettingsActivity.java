@@ -1,14 +1,13 @@
 package com.study.qrscanner;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
-import com.study.qrscanner.R;
 import com.study.qrscanner.helpers.AppCompatPreferenceActivity;
 
 
@@ -75,6 +74,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            // 偏爱设置的fragment，关键字：PreferenceScreen
             addPreferencesFromResource(R.xml.preferences);
 
             bindPreferenceSummaryToValue(findPreference("pref_search_engine"));

@@ -1,8 +1,8 @@
 package com.study.qrscanner.QRGenerating;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
@@ -18,31 +18,28 @@ public class MmsEnterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mms_enter);
 
 
-        final EditText qrMms=(EditText) findViewById(R.id.editTel);
-        final EditText qrText=(EditText) findViewById(R.id.editText1);
-        Button generate=(Button) findViewById(R.id.generate);
+        final EditText qrMms = (EditText) findViewById(R.id.editTel);
+        final EditText qrText = (EditText) findViewById(R.id.editText1);
+        Button generate = (Button) findViewById(R.id.generate);
 
         int maxLength = 15;
-        qrMms.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
+        qrMms.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
 
         int maxLength2 = 300;
-        qrText.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength2)});
+        qrText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength2)});
 
 
         generate.setOnClickListener(new View.OnClickListener() {
             String result;
+
             @Override
             public void onClick(View v) {
 
 
-
-
-
-                result = qrMms.getText().toString()+":"+qrText.getText().toString();
+                result = qrMms.getText().toString() + ":" + qrText.getText().toString();
                 Intent i = new Intent(MmsEnterActivity.this, MmsGnrActivity.class);
                 i.putExtra("gn", result);
                 startActivity(i);
-
 
 
             }

@@ -6,10 +6,10 @@ public class ScanedData {
     private int _id;
     private String _content;
 
-    public ScanedData(){
+    public ScanedData() {
     }
 
-    public ScanedData(String name){
+    public ScanedData(String name) {
         this._content = name;
     }
 

@@ -4,15 +4,10 @@ package com.study.qrscanner.QRGenerating;
  * Created by bassel on 12/17/2017.
  */
 
-import android.provider.ContactsContract;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.telephony.PhoneNumberUtils;
-
-import java.util.Collection;
-import java.util.EnumMap;
-import java.util.HashSet;
-import java.util.Map;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -20,7 +15,12 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-public  class QRCodeEncoder {
+import java.util.Collection;
+import java.util.EnumMap;
+import java.util.HashSet;
+import java.util.Map;
+
+public class QRCodeEncoder {
     private static final int WHITE = 0xFFFFFFFF;
     private static final int BLACK = 0xFF000000;
 
@@ -83,13 +83,12 @@ public  class QRCodeEncoder {
                 displayContents = data;
                 title = "E-Mail";
             }
-        }
-            else if (type.equals(Contents.Type.WEB_URL)) {
-                data = trim(data);
-                if (data != null &&!data.startsWith("http://") && !data.startsWith("https://") )
-                    contents = "http://" + data;
-                    displayContents = data;
-                    title = "URL";
+        } else if (type.equals(Contents.Type.WEB_URL)) {
+            data = trim(data);
+            if (data != null && !data.startsWith("http://") && !data.startsWith("https://"))
+                contents = "http://" + data;
+            displayContents = data;
+            title = "URL";
 
         } else if (type.equals(Contents.Type.PHONE)) {
             data = trim(data);
@@ -99,17 +98,15 @@ public  class QRCodeEncoder {
                 title = "Phone";
             }
 
-        }
-        else if (type.equals(Contents.Type.WIFI)) {
+        } else if (type.equals(Contents.Type.WIFI)) {
             data = trim(data);
             if (data != null) {
                 contents = "WIFI:T:" + data;
-               // displayContents = PhoneNumberUtils.formatNumber(data);
+                // displayContents = PhoneNumberUtils.formatNumber(data);
                 title = "WIFI";
             }
 
-        }
-        else if (type.equals(Contents.Type.Me_Card)) {
+        } else if (type.equals(Contents.Type.Me_Card)) {
             data = trim(data);
             if (data != null) {
                 contents = "MECARD:N:" + data;
@@ -117,34 +114,30 @@ public  class QRCodeEncoder {
                 title = "MeCard";
             }
 
-        }
-        else if (type.equals(Contents.Type.Biz_Card)) {
+        } else if (type.equals(Contents.Type.Biz_Card)) {
             data = trim(data);
             if (data != null) {
                 contents = "BIZCARD:N:" + data;
                 displayContents = data;
                 title = "BizCard";
             }
-        }
-            else if (type.equals(Contents.Type.Market)) {
-                data = trim(data);
-                if (data != null) {
-                    contents = "market://details?id=" + data;
-                    displayContents = data;
-                    title = "Market";
-                }
-
-        }
-        else if (type.equals(Contents.Type.V_Card)) {
+        } else if (type.equals(Contents.Type.Market)) {
             data = trim(data);
             if (data != null) {
-                contents = "BEGIN:VCARD"+"\n"+"VERSION:3.0"+"\n"+ data;
+                contents = "market://details?id=" + data;
+                displayContents = data;
+                title = "Market";
+            }
+
+        } else if (type.equals(Contents.Type.V_Card)) {
+            data = trim(data);
+            if (data != null) {
+                contents = "BEGIN:VCARD" + "\n" + "VERSION:3.0" + "\n" + data;
                 displayContents = data;
                 title = "VCard";
             }
 
-        }
-        else if (type.equals(Contents.Type.SMS)) {
+        } else if (type.equals(Contents.Type.SMS)) {
             data = trim(data);
             if (data != null) {
                 contents = "SMSTO:" + data;
@@ -152,8 +145,7 @@ public  class QRCodeEncoder {
                 title = "SMS";
             }
 
-        }
-        else if (type.equals(Contents.Type.MMS)) {
+        } else if (type.equals(Contents.Type.MMS)) {
             data = trim(data);
             if (data != null) {
                 contents = "MMSTO:" + data;
@@ -161,7 +153,7 @@ public  class QRCodeEncoder {
                 title = "MMS";
             }
 
-        }else if (type.equals(Contents.Type.CONTACT)) {
+        } else if (type.equals(Contents.Type.CONTACT)) {
             if (bundle != null) {
                 StringBuilder newContents = new StringBuilder(100);
                 StringBuilder newDisplayContents = new StringBuilder(100);
@@ -230,23 +222,23 @@ public  class QRCodeEncoder {
 
             }
         } else if (type.equals(Contents.Type.LOCATION)) {
-           // if (bundle != null) {
+            // if (bundle != null) {
 
-                data = trim(data);
-                if (data != null) {
-                    contents = "geo:" + data;
-                    displayContents =data;
-                            title = "Location";
+            data = trim(data);
+            if (data != null) {
+                contents = "geo:" + data;
+                displayContents = data;
+                title = "Location";
 
-                }
-                // These must use Bundle.getFloat(), not getDouble(), it's part of the API.
+            }
+            // These must use Bundle.getFloat(), not getDouble(), it's part of the API.
               /*  float latitude = bundle.getFloat("LAT", Float.MAX_VALUE);
                 float longitude = bundle.getFloat("LONG", Float.MAX_VALUE);
                 if (latitude != Float.MAX_VALUE && longitude != Float.MAX_VALUE) {
                     contents = "geo:" + latitude + ',' + longitude;
                     displayContents = latitude + "," + longitude;
                     title = "Location";    */
-               // }
+            // }
             //}
         }
     }
@@ -281,19 +273,25 @@ public  class QRCodeEncoder {
     private static String guessAppropriateEncoding(CharSequence contents) {
         // Very crude at the moment
         for (int i = 0; i < contents.length(); i++) {
-            if (contents.charAt(i) > 0xFF) { return "UTF-8"; }
+            if (contents.charAt(i) > 0xFF) {
+                return "UTF-8";
+            }
         }
         return null;
     }
 
     private static String trim(String s) {
-        if (s == null) { return null; }
+        if (s == null) {
+            return null;
+        }
         String result = s.trim();
         return result.length() == 0 ? null : result;
     }
 
     private static String escapeMECARD(String input) {
-        if (input == null || (input.indexOf(':') < 0 && input.indexOf(';') < 0)) { return input; }
+        if (input == null || (input.indexOf(':') < 0 && input.indexOf(';') < 0)) {
+            return input;
+        }
         int length = input.length();
         StringBuilder result = new StringBuilder(length);
         for (int i = 0; i < length; i++) {

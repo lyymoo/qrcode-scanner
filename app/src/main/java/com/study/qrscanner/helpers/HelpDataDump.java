@@ -40,28 +40,29 @@ public class HelpDataDump {
         this.context = context;
     }
 
+    // 生成帮助数据，供帮助页面显示
     public LinkedHashMap<String, List<String>> getDataGeneral() {
         LinkedHashMap<String, List<String>> expandableListDetail = new LinkedHashMap<String, List<String>>();
 
+        // app介绍
         List<String> general = new ArrayList<String>();
-        general.add(context.getResources().getString(R.string.help_whatis_answer));
+        general.add(context.getResources().getString(R.string.help_whatis_answer)); // 答
+        expandableListDetail.put(context.getResources().getString(R.string.help_whatis), general); // 问
 
-        expandableListDetail.put(context.getResources().getString(R.string.help_whatis), general);
-
+        // 不可用
         List<String> features = new ArrayList<String>();
-        features.add(context.getResources().getString(R.string.help_usability_answer));
+        features.add(context.getResources().getString(R.string.help_usability_answer)); // 答
+        expandableListDetail.put(context.getResources().getString(R.string.help_usability), features); // 问
 
-        expandableListDetail.put(context.getResources().getString(R.string.help_usability), features);
-
+        // 什么是隐私友好
         List<String> privacy = new ArrayList<String>();
-       // privacy.add(context.getResources().getString(R.string.help_privacy_answer));
+        privacy.add(context.getResources().getString(R.string.help_privacy_answer)); // 答
+        expandableListDetail.put(context.getResources().getString(R.string.help_privacy), privacy); // 问
 
-       // expandableListDetail.put(context.getResources().getString(R.string.help_privacy), privacy);
-
+        // 需要什么权限
         List<String> permissions = new ArrayList<String>();
-        permissions.add(context.getResources().getString(R.string.help_permission_answer));
-
-        expandableListDetail.put(context.getResources().getString(R.string.help_permission), permissions);
+        permissions.add(context.getResources().getString(R.string.help_permission_answer)); // 答
+        expandableListDetail.put(context.getResources().getString(R.string.help_permission), permissions); // 问
 
         return expandableListDetail;
     }

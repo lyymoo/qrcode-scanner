@@ -53,7 +53,7 @@ public class MMSResultFragment extends ResultFragment {
                         switch (which) {
                             case 0:
                                 Intent sms = new Intent(Intent.ACTION_SENDTO, Uri.parse("mmsto:" + number));
-                                sms.putExtra("address",  number);
+                                sms.putExtra("address", number);
                                 sms.putExtra("mms_body", message);
                                 caption = getResources().getStringArray(R.array.mms_array)[0];
                                 startActivity(Intent.createChooser(sms, caption));

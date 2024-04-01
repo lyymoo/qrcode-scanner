@@ -33,8 +33,6 @@ public final class Contents {
         public static final String Biz_Card = "BizCard_TYPE";
 
 
-
-
         //  A contact. Send a request to encode it as follows:
         //  <p/>
         //  import android.provider.Contacts;

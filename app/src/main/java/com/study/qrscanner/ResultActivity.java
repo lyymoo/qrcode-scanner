@@ -1,5 +1,8 @@
 package com.study.qrscanner;
 
+import static com.study.qrscanner.R.string.content_copied;
+import static java.util.regex.Pattern.CASE_INSENSITIVE;
+
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
@@ -15,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.study.qrscanner.R;
 import com.study.qrscanner.DataBase.DBHandler;
 import com.study.qrscanner.DataBase.ScanedData;
 import com.study.qrscanner.resultfragments.BizCardResultFragment;
@@ -37,9 +39,6 @@ import com.study.qrscanner.resultfragments.WifiResultFragment;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.study.qrscanner.R.string.content_copied;
-import static java.util.regex.Pattern.CASE_INSENSITIVE;
-
 public class ResultActivity extends AppCompatActivity implements TextResultFragment.OnFragmentInteractionListener {
 
     private QRResultType currentResultType;
@@ -59,18 +58,22 @@ public class ResultActivity extends AppCompatActivity implements TextResultFragm
         setContentView(R.layout.activity_result);
 
         ActionBar ab = getSupportActionBar();
-        if(ab != null) {
+        if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        dbHandler = new DBHandler(this,  null);//DB
+        dbHandler = new DBHandler(this, null);//DB
 
+        // 从App偏好设置管理器获取共享的偏好设置
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        // 获取“是否开启历史记录”的开关
         boolean checked = sharedPref.getBoolean("bool_history", true);
         Bundle intentExtras = getIntent().getExtras();
+        // 获取扫描页面跳转传递的QRCode参数
+        assert intentExtras != null;
         String QRCode = intentExtras.getString("QRResult");
         this.currentQrCode = QRCode;
-
+        // 获取历史列表页面跳转传递的二维码内容参数
         String QrHistory = intentExtras.getString("QrHistory");
 
         QRResultType resultType = QRResultType.TEXT;
@@ -78,12 +81,15 @@ public class ResultActivity extends AppCompatActivity implements TextResultFragm
         if (checked && QRCode != null) {
             // addContent();
             ScanedData content = new ScanedData(QRCode);
+            // 将历史记录存入DB
             dbHandler.addContent(content);
             resultType = checkResult(QRCode);
         } else if (!checked && QRCode != null) {
             resultType = checkResult(QRCode);
         } else if (QrHistory != null) {
             resultType = checkResult(QrHistory);
+            QRCode = QrHistory;
+            this.currentQrCode = QrHistory;
         }
 
         loadFragment(resultType, QRCode);
@@ -91,7 +97,7 @@ public class ResultActivity extends AppCompatActivity implements TextResultFragm
 
     public void onClick(View view) {
         if (view.getId() == R.id.btnProceed) {
-            if(currentResultFragment != null) {
+            if (currentResultFragment != null) {
                 currentResultFragment.onProceedPressed(this, currentQrCode);
             }
         }
@@ -102,16 +108,16 @@ public class ResultActivity extends AppCompatActivity implements TextResultFragm
         Bundle intentExtras = getIntent().getExtras();
         String qrCode = intentExtras.getString("QRResult");
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.share:
-                Intent sharingIntent= new Intent(Intent.ACTION_SEND);
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(Intent.EXTRA_TEXT,qrCode);
-                startActivity(Intent.createChooser(sharingIntent,getString(R.string.share_via)));
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, qrCode);
+                startActivity(Intent.createChooser(sharingIntent, getString(R.string.share_via)));
                 return true;
 
             case R.id.copy:
-                ClipboardManager clipboardManager =(ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                 ClipData clipData = ClipData.newPlainText("Text", qrCode);
                 clipboardManager.setPrimaryClip(clipData);
                 Toast.makeText(getApplicationContext(), content_copied, Toast.LENGTH_SHORT).show();
@@ -123,7 +129,12 @@ public class ResultActivity extends AppCompatActivity implements TextResultFragm
     }
 
     private void loadFragment(QRResultType resultType, String qrCodeString) {
+        // Android使用Fragment来管理布局（翻译成碎片）
+        // https://blog.csdn.net/u011240877/category_6895052.html
+        // Fragment FragmentManager FragmentTransaction三者的区别
+        // https://blog.csdn.net/u011240877/article/details/78132990
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        // Activity Android的四大组件之一，一般不翻译，强行翻译的话就是活动
 
         currentResultType = resultType;
 

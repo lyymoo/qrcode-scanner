@@ -17,7 +17,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ContactResultFragment extends ResultFragment {
-
     private String title;
     private String company;
     private String address;

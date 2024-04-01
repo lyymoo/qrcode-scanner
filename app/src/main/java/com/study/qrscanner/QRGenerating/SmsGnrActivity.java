@@ -7,9 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -43,11 +43,10 @@ public class SmsGnrActivity extends AppCompatActivity {
         Bundle QRData = getIntent().getExtras();//from QRGenerator
         final String qrInputText = QRData.getString("gn");
 
-
-        Bitmap bitmap=createBitmap(qrInputText);
+        Bitmap bitmap = createBitmap(qrInputText);
 
         ImageView myImage = (ImageView) findViewById(R.id.imageView1);
-        myImage.setImageBitmap(bitmap );
+        myImage.setImageBitmap(bitmap);
 
 
         btnstore.setOnClickListener(new View.OnClickListener() {
@@ -59,14 +58,12 @@ public class SmsGnrActivity extends AppCompatActivity {
                 final String qrInputText = QRData.getString("gn");
 
 
-                Bitmap bitmap=createBitmap(qrInputText);
+                Bitmap bitmap = createBitmap(qrInputText);
                 saveImageToExternalStorage(bitmap);
 
-                Intent i=new Intent(SmsGnrActivity.this, ScannerActivity.class);
+                Intent i = new Intent(SmsGnrActivity.this, ScannerActivity.class);
                 startActivity(i);
                 Toast.makeText(SmsGnrActivity.this, "QR code stored in gallery", Toast.LENGTH_LONG).show();
-
-
 
 
             }
@@ -76,7 +73,7 @@ public class SmsGnrActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.share,menu);
+        getMenuInflater().inflate(R.menu.share, menu);
 
 
         return true;
@@ -86,12 +83,11 @@ public class SmsGnrActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
 
-
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.share:
                 Bundle QRData = getIntent().getExtras();//from QRGenerator
                 final String qrInputText = QRData.getString("gn");
-                Bitmap bitmap=createBitmap(qrInputText);
+                Bitmap bitmap = createBitmap(qrInputText);
                 shareIt(bitmap);
 
                 return true;
@@ -100,10 +96,10 @@ public class SmsGnrActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    public void shareIt(Bitmap result)
-    {
+
+    public void shareIt(Bitmap result) {
         try {
-            File file = new File(this.getExternalCacheDir(),"logicchip.png");
+            File file = new File(this.getExternalCacheDir(), "logicchip.png");
             FileOutputStream fOut = new FileOutputStream(file);
             result.compress(Bitmap.CompressFormat.PNG, 100, fOut);
             fOut.flush();
@@ -119,8 +115,6 @@ public class SmsGnrActivity extends AppCompatActivity {
         }
 
     }
-
-
 
 
     private void saveImageToExternalStorage(Bitmap finalBitmap) {
@@ -139,15 +133,14 @@ public class SmsGnrActivity extends AppCompatActivity {
             finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.flush();
             out.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
 
         // Tell the media scanner about the new file so that it is
         // immediately available to the user.
-        MediaScannerConnection.scanFile(this, new String[] { file.toString() }, null,
+        MediaScannerConnection.scanFile(this, new String[]{file.toString()}, null,
                 new MediaScannerConnection.OnScanCompletedListener() {
                     public void onScanCompleted(String path, Uri uri) {
                         Log.i("ExternalStorage", "Scanned " + path + ":");
@@ -156,7 +149,8 @@ public class SmsGnrActivity extends AppCompatActivity {
                 });
 
     }
-    public Bitmap createBitmap (String qrInputText) {
+
+    public Bitmap createBitmap(String qrInputText) {
 
         //Find screen size
         WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);

@@ -8,9 +8,9 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
@@ -34,7 +34,7 @@ public class MailGnrActivity extends AppCompatActivity {
 
     ClipboardManager clipboardManager;
     ClipData clipData;
-    private static final String TAG ="StoreQRCode" ;
+    private static final String TAG = "StoreQRCode";
     private Activity activity;
 
     @Override
@@ -48,33 +48,24 @@ public class MailGnrActivity extends AppCompatActivity {
         final String qrInputText = QRData.getString("gn");
 
 
-            Bitmap bitmap=createBitmap(qrInputText);
+        Bitmap bitmap = createBitmap(qrInputText);
 
-            ImageView myImage = (ImageView) findViewById(R.id.imageView1);
-            myImage.setImageBitmap(bitmap );
+        ImageView myImage = (ImageView) findViewById(R.id.imageView1);
+        myImage.setImageBitmap(bitmap);
 
 
         btnstore.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
                 Bundle QRData = getIntent().getExtras();//from QRGenerator
                 final String qrInputText = QRData.getString("gn");
 
+                Bitmap bitmap = createBitmap(qrInputText);
+                saveImageToExternalStorage(bitmap);
 
-                Bitmap bitmap=createBitmap(qrInputText);
-                    saveImageToExternalStorage(bitmap);
-
-
-
-                Intent i=new Intent(MailGnrActivity.this, ScannerActivity.class);
+                Intent i = new Intent(MailGnrActivity.this, ScannerActivity.class);
                 startActivity(i);
                 Toast.makeText(MailGnrActivity.this, R.string.code_stored, Toast.LENGTH_LONG).show();
-
-
-
-
             }
         });
 
@@ -82,23 +73,18 @@ public class MailGnrActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.share,menu);
-
-
+        getMenuInflater().inflate(R.menu.share, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
-
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.share:
                 Bundle QRData = getIntent().getExtras();//from QRGenerator
                 final String qrInputText = QRData.getString("gn");
-                Bitmap bitmap=createBitmap(qrInputText);
-                    shareIt(bitmap);
+                Bitmap bitmap = createBitmap(qrInputText);
+                shareIt(bitmap);
 
                 return true;
 
@@ -106,10 +92,10 @@ public class MailGnrActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    public void shareIt(Bitmap result)
-    {
+
+    public void shareIt(Bitmap result) {
         try {
-            File file = new File(this.getExternalCacheDir(),"logicchip.png");
+            File file = new File(this.getExternalCacheDir(), "logicchip.png");
             FileOutputStream fOut = new FileOutputStream(file);
             result.compress(Bitmap.CompressFormat.PNG, 100, fOut);
             fOut.flush();
@@ -126,34 +112,33 @@ public class MailGnrActivity extends AppCompatActivity {
 
     }
 
-
-
-
     private void saveImageToExternalStorage(Bitmap finalBitmap) {
         String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
         File myDir = new File(root + "/saved_images");
-        myDir.mkdirs();
+        boolean fileOperateResult;
+        fileOperateResult = myDir.mkdirs();
         Random generator = new Random();
         int n = 10000;
         n = generator.nextInt(n);
-        String fname = "Image-" + n + ".jpg";
-        File file = new File(myDir, fname);
-        if (file.exists())
-            file.delete();
+        String fName = "Image-" + n + ".jpg";
+        File file = new File(myDir, fName);
+        if (file.exists()) {
+            fileOperateResult = file.delete();
+        }
+        Log.i("ExternalStorage", "file operate is:" + fileOperateResult + ":");
         try {
             FileOutputStream out = new FileOutputStream(file);
             finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.flush();
             out.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
 
         // Tell the media scanner about the new file so that it is
         // immediately available to the user.
-        MediaScannerConnection.scanFile(this, new String[] { file.toString() }, null,
+        MediaScannerConnection.scanFile(this, new String[]{file.toString()}, null,
                 new MediaScannerConnection.OnScanCompletedListener() {
                     public void onScanCompleted(String path, Uri uri) {
                         Log.i("ExternalStorage", "Scanned " + path + ":");
@@ -162,7 +147,8 @@ public class MailGnrActivity extends AppCompatActivity {
                 });
 
     }
-    public Bitmap createBitmap (String qrInputText) {
+
+    public Bitmap createBitmap(String qrInputText) {
 
         //Find screen size
         WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
@@ -171,7 +157,7 @@ public class MailGnrActivity extends AppCompatActivity {
         display.getSize(point);
         int width = point.x;
         int height = point.y;
-        int smallerDimension = width < height ? width : height;
+        int smallerDimension = Math.min(width, height);
         smallerDimension = smallerDimension * 3 / 4;
 
         //Encode with a QR Code image
